@@ -31,6 +31,7 @@ class Level:
         self.boss_shots = 0
         self.boss_shot_delay = 0
 
+
         # plataformas
         self.platforms = [
             # chão
@@ -88,6 +89,35 @@ class Level:
 
         self.scroll = 0
         self.ground_y = 300
+
+    def show_end_screen(self, message):
+        font_title = pygame.font.SysFont("Arial", 48, bold=True)
+        font_text = pygame.font.SysFont("Arial", 28)
+        clock = pygame.time.Clock()
+
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
+                if event.type == pygame.KEYDOWN:
+                    return
+
+            overlay = pygame.Surface((WIN_WIDTH, 350))
+            overlay.set_alpha(180)
+            overlay.fill((0, 0, 0))
+
+            self.window.blit(overlay, (0, 0))
+
+            title = font_title.render(message, True, (255, 255, 255))
+            text = font_text.render("Pressione qualquer tecla para Voltar", True, (255, 255, 255))
+
+            self.window.blit(title, (WIN_WIDTH // 2 - title.get_width() // 2, 120))
+            self.window.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2, 200))
+
+            pygame.display.flip()
+            clock.tick(60)
 
 
     def run(self):
@@ -434,15 +464,19 @@ class Level:
 
                         print("Magia acertou o boss!")
 
+                       #TELA PRA WINS
                         if self.boss.life <= 0:
                             print("Boss derrotado!")
                             self.boss = None
-                            break
+                            self.show_end_screen("WINS!")
+                            return "WINS!"
 
             # ---------------- GAME OVER ----------------
             if self.player.life <= 0:
                 print("GAME OVER")
-                return
+                self.show_end_screen("GAME OVER")
+                return "GAME OVER"
+
 
             # ---------------- DESENHO ----------------
             self.window.fill((0, 0, 0))
@@ -519,7 +553,7 @@ class Level:
 
             for wall in self.walls:
                 wall_rect = pygame.Rect(wall.x - self.scroll, wall.y, wall.width, wall.height)
-                pygame.draw.rect(self.window, (0, 255, 0), wall_rect, 2)
+                #pygame.draw.rect(self.window, (0, 255, 0), wall_rect, 2)
 
             pygame.display.flip()
             clock.tick(60)

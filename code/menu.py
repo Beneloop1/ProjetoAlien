@@ -23,17 +23,17 @@ class Menu:
             self.menu_text(50, "Plantas", COLOR_WHITE, ((WIN_WIDTH / 2), 70))
             self.menu_text(50, "Aliens", COLOR_WHITE, ((WIN_WIDTH / 2), 120))
 
-            self.menu_text(15, "Comandos para jogar", COLOR_WHITE, (100, 200))
-            self.menu_text(10, "W - Pula", COLOR_WHITE, (100, 240))
-            self.menu_text(10, "A - Esquerda", COLOR_WHITE, (100, 260))
-            self.menu_text(10, "D - Direita", COLOR_WHITE, (100, 280))
-            self.menu_text(10, "C - Ataque", COLOR_WHITE, (100, 300))
+            self.menu_text(16, "Comandos para jogar", COLOR_WHITE, (110, 200))
+            self.menu_text(15, "W - Pula", COLOR_WHITE, (100, 240))
+            self.menu_text(15, "A - Esquerda", COLOR_WHITE, (100, 260))
+            self.menu_text(15, "D - Direita", COLOR_WHITE, (100, 280))
+            self.menu_text(15, "C - Ataque", COLOR_WHITE, (100, 300))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
-                    self.menu_text(20, MENU_OPTION[i], COLOR_PINK, ((WIN_WIDTH / 2), 200 + 25 * i))
+                    self.menu_text(25, MENU_OPTION[i], COLOR_PINK, ((WIN_WIDTH / 2), 200 + 25 * i))
                 else:
-                    self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
+                    self.menu_text(25, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
             pygame.display.flip()
 
                      #check for all events

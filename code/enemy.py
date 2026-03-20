@@ -23,7 +23,7 @@ class Enemy(Entity):
 
         # boss
         elif name == 'boss':
-            self.life = 10
+            self.life = 7
             self.speed = 1
 
             # hitbox do boss
